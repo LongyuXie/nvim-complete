@@ -1,5 +1,6 @@
-Moudle = {}
+local Moudle = {}
 
+local core = require("complete.core")
 
 
 Moudle.setup = function()
