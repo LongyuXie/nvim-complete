@@ -1,10 +1,14 @@
-local window = {}
 
-local misc = require("complete.misc")
+---@class complete.view.Window
+---@field buffer integer
+---@field win integer
+local Window = {}
+
+local misc = require("complete.utils.misc")
 
 
-window.new = function () 
-    self = setmetatable({}, {__index = window})
+Window.new = function () 
+    self = setmetatable({}, {__index = Window})
     -- setmetatable(o, index=self)
     self.buffer = nil
     self.win = nil
@@ -17,23 +21,23 @@ window.new = function ()
 end
 
 
-window.attach = function(self, buffer, opts)
+Window.attach = function(self, buffer, opts)
     self.buffer = buffer
 end
 
-window.visible = function (self)
+Window.visible = function (self)
     return self.win and vim.api.nvim_win_is_valid(self.win)
 end
 
-window.set_option = function (self, opts)
+Window.set_option = function (self, opts)
 
 end
 
-window.set_style = function (self, style)
+Window.set_style = function (self, style)
     self.style = style
 end
 
-window.open = function (self, style)
+Window.open = function (self, style)
     if style then
         self:set_style(style)
     end
@@ -47,11 +51,11 @@ window.open = function (self, style)
 
 end
 
-window.update = function (self)
+Window.update = function (self)
 
 end
 
-window.close = function (self)
+Window.close = function (self)
     if not self:visible() then
         return
     end
@@ -60,4 +64,4 @@ window.close = function (self)
 end
 
 
-return window
+return Window
